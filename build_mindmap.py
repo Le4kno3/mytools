@@ -2,6 +2,40 @@
 
 import re
 
+
+def fetch_visibility(modifier_string):
+	output = ""
+	if ("external" in modifier_string or "External" in modifier_string):
+		output = output + "external"
+	if ("public" in modifier_string or "Public" in modifier_string):
+		output = output + " public"
+	if ("private" in modifier_string or "Private" in modifier_string):
+		output = output + " private"
+	if ("internal" in modifier_string or "Internal" in modifier_string):
+		output = output + " internal"
+	return output
+
+
+def fetch_mutability(modifier_string):
+	output = ""
+	if ("view" in modifier_string or "View" in modifier_string):
+		output = output + "view"
+	if ("pure" in modifier_string or "Pure" in modifier_string):
+		output = output + " pure"
+	if ("constant" in modifier_string or "Constant" in modifier_string):
+		output = output + " constant"
+	return output
+
+
+def fetch_inheritence(modifier_string):
+	output = ""
+	if ("virtual" in modifier_string or "Virtual" in modifier_string):
+		output = output + "virtual"
+	if ("override" in modifier_string or "Override" in modifier_string):
+		output = output + " override"
+	return output
+
+
 def main():
 
 	# There is a limit on number of functions here, it should be less than 100.
@@ -89,33 +123,58 @@ def main():
 		for i in range(0, counter):
 			if(fn_name[i]):
 				if( not fn_returns[i] and not fn_outlier[i]):
-					print("Function Name: "+fn_name[i])
-					print("Function Arguments: "+fn_arguments[i])
-					print("Function Modifier: "+fn_modifier[i])
-					print("---------------\n")
+					print(fn_name[i])
+					if fn_arguments[i] != "":
+						print("	Arguments: "+fn_arguments[i])
+					# print("Function Modifier: "+fn_modifier[i])
+					if fetch_visibility(fn_modifier[i]) != "":
+						print("	Visibility: "+fetch_visibility(fn_modifier[i]))
+					if fetch_mutability(fn_modifier[i]) != "":
+						print("	Mutability: "+fetch_mutability(fn_modifier[i]))
+					if fetch_inheritence(fn_modifier[i]) != "":
+						print("	Inheritence: "+fetch_inheritence(fn_modifier[i]))
+
 				if(fn_returns[i] and not fn_outlier[i]):
-					print("Function Name: "+fn_name[i])
-					print("Function Arguments: "+fn_arguments[i])
-					print("Function Modifier: "+fn_modifier[i])
-					print("Function Returns: "+str(fn_returns[i]))
-					print("Function Return Type: "+fn_return_type[i])
-					print("---------------\n")
+					print(fn_name[i])
+					if fn_arguments[i] != "":
+						print("	Arguments: "+fn_arguments[i])
+					# print("Function Modifier: "+fn_modifier[i])
+					if fetch_visibility(fn_modifier[i]) != "":
+						print("	Visibility: "+fetch_visibility(fn_modifier[i]))
+					if fetch_mutability(fn_modifier[i]) != "":
+						print("	Mutability: "+fetch_mutability(fn_modifier[i]))
+					if fetch_inheritence(fn_modifier[i]) != "":
+						print("	Inheritence: "+fetch_inheritence(fn_modifier[i]))
+					print("	Returns")
+					print("		" + fn_return_type[i])
+
 				if(fn_returns[i] and fn_outlier[i]):
-					print("Function Name: "+fn_name[i])
-					print("Function Arguments: "+fn_arguments[i])
-					print("Function Modifier: "+fn_modifier[i])
-					print("Function Returns : "+str(fn_returns[i]))
-					print("Function Return Type: "+fn_return_type[i])
-					print("Function Outlier Name : "+fn_outlier_name[i])
-					print("Function Outlier Arguments: "+fn_outlier_arguments[i])
-					print("---------------\n")
+					print(fn_name[i])
+					if fn_arguments[i] != "":
+						print("	Arguments: "+fn_arguments[i])
+					# print("Function Modifier: "+fn_modifier[i])
+					if fetch_visibility(fn_modifier[i]) != "":
+						print("	Visibility: "+fetch_visibility(fn_modifier[i]))
+					if fetch_mutability(fn_modifier[i]) != "":
+						print("	Mutability: "+fetch_mutability(fn_modifier[i]))
+					if fetch_inheritence(fn_modifier[i]) != "":
+						print("	Inheritence: "+fetch_inheritence(fn_modifier[i]))
+					print("	Returns")
+					print("		" + fn_return_type[i])
+					# print("Function Outlier Name : "+fn_outlier_name[i])
+					# print("Function Outlier Arguments: "+fn_outlier_arguments[i])
 				if(not fn_returns[i] and fn_outlier[i]):
-					print("Function Name: "+fn_name[i])
-					print("Function Arguments: "+fn_arguments[i])
-					print("Function Modifier: "+fn_modifier[i])
-					print("Function Outlier Name : "+fn_outlier_name[i])
-					print("Function Outlier Arguments: "+fn_outlier_arguments[i])
-					print("---------------\n")
+					print(fn_name[i])
+					if fn_arguments[i] != "":
+						print("	Arguments: "+fn_arguments[i])
+					if fetch_visibility(fn_modifier[i]) != "":
+						print("	Visibility: "+fetch_visibility(fn_modifier[i]))
+					if fetch_mutability(fn_modifier[i]) != "":
+						print("	Mutability: "+fetch_mutability(fn_modifier[i]))
+					if fetch_inheritence(fn_modifier[i]) != "":
+						print("	Inheritence: "+fetch_inheritence(fn_modifier[i]))
+					# print("Function Outlier Name : "+fn_outlier_name[i])
+					# print("Function Outlier Arguments: "+fn_outlier_arguments[i])
 
 #not needed if this is a standalone python script
 if __name__ == "__main__":
